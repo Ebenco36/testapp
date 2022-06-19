@@ -1,5 +1,5 @@
 const connection = require("../services/db");
-const AppError = require("./utils/AppError");
+const AppError = require("../utils/AppError");
 const {
     binarySearchNumbers,
     binarySearchStrings,
