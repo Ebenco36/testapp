@@ -11,7 +11,7 @@ const { validationResult } = require('express-validator');
 
 
 exports.getSavedSearch = (req, res, next) => {
-    connection.query("SELECT * FROM searches", function (err, data) {
+    connection.query("SELECT * FROM Searches", function (err, data) {
         if (err) return next(new AppError(err))
         res.status(200).json({
             status: "success",
@@ -26,7 +26,7 @@ const addSearch = (key, result) => {
     let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
     const values = [key, JSON.stringify(result), date, date];
     connection.query(
-        "INSERT INTO searches (`key`, `result`, `createdAt`, `updatedAt`) VALUES(?)",
+        "INSERT INTO Searches (`key`, `result`, `createdAt`, `updatedAt`) VALUES(?)",
         [values]);
 };
 
@@ -37,7 +37,7 @@ exports.deleteSearch = (req, res, next) => {
         return next(new AppError("No todo id found", 404));
     }
     connection.query(
-        "DELETE FROM searches WHERE id=?",
+        "DELETE FROM Searches WHERE id=?",
         [req.params.id],
         function (err, fields) {
             if (err) return next(new AppError(err, 500));
@@ -70,7 +70,7 @@ exports.computation = (req, res, next) => {
 
     // check if record can be found
     // let checkIfExist = findItem(key);
-    connection.query("SELECT * FROM searches WHERE `key`=?", key, function (err, checkIfExist) {
+    connection.query("SELECT * FROM Searches WHERE `key`=?", key, function (err, checkIfExist) {
         if (err) throw err;
         start = new Date().getTime();
         result = {}
