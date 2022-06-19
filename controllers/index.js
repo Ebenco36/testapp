@@ -74,7 +74,7 @@ exports.computation = (req, res, next) => {
         if (err) throw err;
         start = new Date().getTime();
         result = {}
-        console.log(!checkIfExist[0])
+        
         if (!checkIfExist[0]) {
             // sort mixed list using javascript predefined function
             // let sorted = search_REC.sort(new Intl.Collator('en', { numeric: true, sensitivity: 'accent' }).compare)
@@ -113,7 +113,7 @@ exports.computation = (req, res, next) => {
                 "index_from_sorted_list": locationUsingSortedList,
                 "index_without_sorting": indexSearch,
             }
-            console.log("Condition: " + (indexSearch != -1 && locationUsingSortedList))
+            
             if (indexSearch != -1 && locationUsingSortedList) {
                 addSearch(key, result)
             }
